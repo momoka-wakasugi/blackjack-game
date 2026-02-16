@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ブラックジャック ゲーム</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/game.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ブラックジャック</h1>
+            <div class="room-info">
+                <span id="room-name">ルーム</span>
+                <span id="player-count">0 プレイヤー</span>
+            </div>
+        </header>
+        
+        <main class="game-area">
+            <!-- Dealer Section -->
+            <section class="dealer-section">
+                <h2>ディーラー</h2>
+                <div class="hand" id="dealer-hand">
+                    <!-- Cards will be added dynamically -->
+                </div>
+                <div class="hand-value" id="dealer-value">-</div>
+            </section>
+            
+            <!-- Players Section -->
+            <section class="players-section">
+                <h2>プレイヤー</h2>
+                <div class="players-grid" id="players-grid">
+                    <!-- Player cards will be added dynamically -->
+                </div>
+            </section>
+            
+            <!-- Game Controls -->
+            <section class="game-controls">
+                <!-- Balance Display -->
+                <div class="balance-display" id="balance-display">
+                    <div class="balance-info">
+                        <span class="balance-label">残高:</span>
+                        <span class="balance-amount" id="balance-amount">$1,000</span>
+                    </div>
+                    <div class="bet-info">
+                        <span class="bet-label">ベット額:</span>
+                        <span class="bet-amount" id="bet-amount">$0</span>
+                    </div>
+                </div>
+
+                <!-- Betting Area -->
+                <div class="betting-area" id="betting-area" style="display: none;">
+                    <h3>ベットを配置してください</h3>
+                    <div class="chip-selector">
+                        <button class="chip-btn" data-value="1">
+                            <span class="chip white">$1</span>
+                        </button>
+                        <button class="chip-btn" data-value="5">
+                            <span class="chip red">$5</span>
+                        </button>
+                        <button class="chip-btn" data-value="25">
+                            <span class="chip green">$25</span>
+                        </button>
+                        <button class="chip-btn" data-value="100">
+                            <span class="chip black">$100</span>
+                        </button>
+                        <button class="chip-btn" data-value="500">
+                            <span class="chip purple">$500</span>
+                        </button>
+                        <button class="chip-btn" data-value="1000">
+                            <span class="chip orange">$1,000</span>
+                        </button>
+                        <button class="chip-btn" data-value="5000">
+                            <span class="chip brown">$5,000</span>
+                        </button>
+                    </div>
+                    <div class="betting-controls">
+                        <button id="clear-bet-btn" class="secondary-btn">クリア</button>
+                        <button id="place-bet-btn" class="primary-btn" disabled>ベット確定</button>
+                    </div>
+                </div>
+
+                <div class="waiting-area" id="waiting-area">
+                    <p>プレイヤーの参加を待っています...</p>
+                    <button id="start-betting-btn" disabled>ベット開始</button>
+                </div>
+                
+                <div class="action-buttons" id="action-buttons" style="display: none;">
+                    <button id="hit-btn" disabled>ヒット</button>
+                    <button id="stand-btn" disabled>スタンド</button>
+                </div>
+                
+                <div class="game-status" id="game-status">
+                    <p id="status-message">ゲーム開始を待っています</p>
+                </div>
+
+                <!-- Payout Result -->
+                <div class="payout-result" id="payout-result" style="display: none;">
+                    <h3 id="payout-title">結果</h3>
+                    <p id="payout-message"></p>
+                    <p id="payout-amount"></p>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Big Result Overlay -->
+        <div class="result-overlay" id="result-overlay" style="display: none;">
+            <div class="result-content">
+                <div class="result-title" id="result-title">WIN!</div>
+                <div class="result-chips" id="result-chips">+$500</div>
+                <div class="result-subtitle" id="result-subtitle">おめでとうございます！</div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/GameUI.js"></script>
+    <script src="/js/SocketClient.js"></script>
+    <script src="/js/game.js"></script>
+</body>
+</html>

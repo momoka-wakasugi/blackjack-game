@@ -1,0 +1,7 @@
+# This directory will contain game logic components
+# - GameEngine.js
+# - RoomManager.js
+# - DealerAI.js
+# - Card.js
+# - Deck.js
+# - Player.js

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ブラックジャック マルチプレイヤー</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ブラックジャック マルチプレイヤー</h1>
+        </header>
+        
+        <main class="room-selection">
+            <h2>ルーム選択</h2>
+            <div class="rooms-grid">
+                <div class="room-card" data-room-id="room1">
+                    <h3>ルーム 1</h3>
+                    <div class="room-info">
+                        <span class="player-count">0/6 プレイヤー</span>
+                        <span class="room-status">待機中</span>
+                    </div>
+                    <button class="join-btn" onclick="joinRoom('room1')">参加</button>
+                </div>
+                
+                <div class="room-card" data-room-id="room2">
+                    <h3>ルーム 2</h3>
+                    <div class="room-info">
+                        <span class="player-count">0/6 プレイヤー</span>
+                        <span class="room-status">待機中</span>
+                    </div>
+                    <button class="join-btn" onclick="joinRoom('room2')">参加</button>
+                </div>
+                
+                <div class="room-card" data-room-id="room3">
+                    <h3>ルーム 3</h3>
+                    <div class="room-info">
+                        <span class="player-count">0/6 プレイヤー</span>
+                        <span class="room-status">待機中</span>
+                    </div>
+                    <button class="join-btn" onclick="joinRoom('room3')">参加</button>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/room-selection.js"></script>
+</body>
+</html>
