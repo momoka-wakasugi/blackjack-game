@@ -74,10 +74,11 @@ function showHowToPlayPopup() {
     const popup = document.getElementById('how-to-play-popup');
     const closeBtn = document.getElementById('close-popup-btn');
     const okBtn = document.getElementById('popup-ok-btn');
+    const helpBtn = document.getElementById('help-btn');
     
     if (!popup) return;
     
-    // Show popup
+    // Show popup initially
     popup.style.display = 'flex';
     
     // Close popup handlers
@@ -85,8 +86,17 @@ function showHowToPlayPopup() {
         popup.style.display = 'none';
     };
     
+    const openPopup = () => {
+        popup.style.display = 'flex';
+    };
+    
     closeBtn.addEventListener('click', closePopup);
     okBtn.addEventListener('click', closePopup);
+    
+    // Help button to reopen popup
+    if (helpBtn) {
+        helpBtn.addEventListener('click', openPopup);
+    }
     
     // Close on overlay click
     popup.addEventListener('click', (e) => {

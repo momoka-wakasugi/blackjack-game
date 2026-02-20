@@ -114,6 +114,25 @@ class GameUI {
         this.updateStartButton(gameState);
         this.updateActionButtons(gameState);
         
+        // ディーラーのターンかどうかをチェック
+        const isDealerTurn = gameState.currentPlayerIndex === -1 && 
+                            gameState.status === 'playing' &&
+                            gameState.dealer && 
+                            (gameState.dealer.status === 'playing' || gameState.dealer.status === 'hitting');
+        
+        console.log('updateDisplay - Dealer turn check:', {
+            currentPlayerIndex: gameState.currentPlayerIndex,
+            gameStatus: gameState.status,
+            dealerStatus: gameState.dealer ? gameState.dealer.status : 'no dealer',
+            isDealerTurn: isDealerTurn
+        });
+        
+        // ディーラーのターン時に自動スクロール
+        if (isDealerTurn) {
+            console.log('Scrolling to dealer section...');
+            this.scrollToDealerSection();
+        }
+        
         // Update dealer and players display
         if (gameState.dealer) {
             this.updateDealerHand(gameState.dealer);
@@ -121,6 +140,22 @@ class GameUI {
         
         if (gameState.players) {
             this.updatePlayersDisplay(gameState.players);
+        }
+    }
+    
+    // ディーラーセクションまでスクロール
+    scrollToDealerSection() {
+        const dealerSection = document.querySelector('.dealer-section');
+        console.log('scrollToDealerSection called, dealerSection:', dealerSection);
+        if (dealerSection) {
+            setTimeout(() => {
+                console.log('Executing scroll...');
+                dealerSection.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start',
+                    inline: 'nearest'
+                });
+            }, 500);
         }
     }
     
@@ -207,6 +242,28 @@ class GameUI {
     // Update dealer's hand display
     updateDealerHand(dealer) {
         if (!this.elements.dealerHand || !dealer) return;
+        
+        const dealerSection = document.querySelector('.dealer-section');
+        
+        // ディーラーのターンかどうかを判定
+        const isDealerTurn = dealer.status === 'playing' || dealer.status === 'hitting';
+        
+        // ディーラーのターン時にハイライト＆スクロール
+        if (dealerSection) {
+            if (isDealerTurn) {
+                dealerSection.classList.add('dealer-turn');
+                
+                // ディーラーセクションまでスムーズにスクロール
+                setTimeout(() => {
+                    dealerSection.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'center' 
+                    });
+                }, 300);
+            } else {
+                dealerSection.classList.remove('dealer-turn');
+            }
+        }
         
         this.elements.dealerHand.innerHTML = '';
         

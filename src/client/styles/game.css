@@ -19,6 +19,30 @@
     box-shadow: 0 4px 8px rgba(244, 67, 54, 0.4);
 }
 
+/* Help Button */
+.help-btn {
+    background: #2196F3;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.help-btn:hover {
+    background: #1976D2;
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(33, 150, 243, 0.4);
+}
+
 /* How to Play Popup */
 .popup-overlay {
     position: fixed;
@@ -179,82 +203,196 @@ header .room-info span {
 
 /* Optimized for 1360x768 */
 @media (min-width: 1024px) and (max-height: 800px) {
+    body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+    
     .container {
-        padding: 10px;
+        padding: 5px 10px;
         max-width: 1340px;
         margin: 0 auto;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
     }
     
     header {
-        padding: 10px 0;
-        margin-bottom: 10px;
+        padding: 5px 0;
+        margin-bottom: 5px;
+        flex-shrink: 0;
     }
     
     header h1 {
-        font-size: 1.8rem;
-        margin-bottom: 5px;
+        font-size: 1.5rem;
+        margin: 5px 0;
+    }
+    
+    header .room-info {
+        margin-top: 5px;
+        gap: 10px;
+    }
+    
+    header .room-info span {
+        padding: 3px 10px;
+        font-size: 0.8rem;
+    }
+    
+    .exit-btn {
+        padding: 5px 15px;
+        font-size: 0.8rem;
     }
     
     .game-area {
-        gap: 15px;
-        max-height: calc(100vh - 140px);
+        gap: 8px;
+        flex: 1;
+        overflow-y: auto;
+        padding-right: 5px;
     }
     
     .dealer-section, .players-section, .game-controls {
-        padding: 15px;
+        padding: 8px 12px;
     }
     
     .dealer-section h2, .players-section h2 {
-        font-size: 1.3rem;
-        margin-bottom: 10px;
+        font-size: 1.1rem;
+        margin-bottom: 5px;
     }
     
     .hand {
-        margin: 10px 0;
-        gap: 8px;
+        margin: 5px 0;
+        gap: 5px;
     }
     
     .card {
-        width: 55px;
-        height: 77px;
+        width: 45px;
+        height: 63px;
+        font-size: 0.65rem;
+    }
+    
+    .card-rank {
+        font-size: 0.75rem;
+    }
+    
+    .card-suit {
+        font-size: 0.9rem;
+    }
+    
+    .hand-value {
+        font-size: 1rem;
+        margin-top: 5px;
     }
     
     .balance-display {
-        padding: 10px;
-        margin-bottom: 15px;
+        padding: 8px;
+        margin-bottom: 8px;
+        gap: 20px;
+    }
+    
+    .balance-label, .bet-label {
+        font-size: 0.75rem;
     }
     
     .balance-amount, .bet-amount {
-        font-size: 1.3rem;
+        font-size: 1.1rem;
+    }
+    
+    .betting-area h3 {
+        font-size: 1rem;
+        margin-bottom: 8px;
     }
     
     .chip-selector {
-        gap: 8px;
-        margin-bottom: 15px;
+        gap: 5px;
+        margin-bottom: 8px;
+        grid-template-columns: repeat(7, 1fr);
     }
     
     .chip {
-        width: 65px;
-        height: 65px;
-        font-size: 0.85rem;
+        width: 50px;
+        height: 50px;
+        font-size: 0.7rem;
+    }
+    
+    .chip::before {
+        border-width: 1px;
+    }
+    
+    .betting-controls {
+        gap: 10px;
     }
     
     .betting-controls button {
-        padding: 10px 25px;
-        font-size: 0.95rem;
+        padding: 8px 20px;
+        font-size: 0.85rem;
+    }
+    
+    .action-buttons {
+        gap: 10px;
+        margin-bottom: 8px;
     }
     
     .action-buttons button {
-        padding: 12px 25px;
-        font-size: 1rem;
+        padding: 8px 20px;
+        font-size: 0.9rem;
+        min-width: 100px;
     }
     
     .game-status {
-        margin-top: 15px;
+        margin-top: 8px;
     }
     
     #status-message {
+        font-size: 0.9rem;
+    }
+    
+    .payout-result {
+        margin-top: 8px;
+        padding: 10px;
+    }
+    
+    .payout-result h3 {
         font-size: 1rem;
+        margin-bottom: 5px;
+    }
+    
+    .payout-result p {
+        font-size: 0.9rem;
+        margin: 3px 0;
+    }
+    
+    #payout-amount {
+        font-size: 1.1rem;
+    }
+    
+    #start-betting-btn {
+        font-size: 18px;
+        padding: 12px 35px;
+    }
+    
+    #start-betting-btn::before,
+    #start-betting-btn::after {
+        font-size: 20px;
+    }
+    
+    .players-grid {
+        gap: 8px;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+    
+    .player-card {
+        padding: 8px;
+    }
+    
+    .player-name {
+        font-size: 0.9rem;
+        margin-bottom: 5px;
+    }
+    
+    .player-status {
+        font-size: 0.75rem;
     }
 }
 
@@ -265,11 +403,31 @@ header .room-info span {
     padding: 20px;
     border-radius: 10px;
     border: 2px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.dealer-section.dealer-turn {
+    border-color: #FFD700;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    background: rgba(255, 215, 0, 0.1);
 }
 
 .dealer-section h2 {
     margin-bottom: 15px;
     color: #FFD700;
+}
+
+.dealer-section.dealer-turn h2 {
+    animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
 }
 
 /* Players Section */

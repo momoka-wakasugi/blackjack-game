@@ -183,6 +183,8 @@ class SocketClient {
             console.log('Dealer turn starting:', data);
             if (this.gameUI) {
                 this.gameUI.showMessage('ディーラーのターン');
+                // ディーラーセクションまでスクロール
+                this.gameUI.scrollToDealerSection();
             }
         });
         

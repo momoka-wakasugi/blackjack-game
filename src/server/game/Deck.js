@@ -13,15 +13,34 @@ class Deck {
 
   /**
    * Initialize a standard 52-card deck
+   * DEBUG: Set to true to force blackjack for testing
    */
-  initializeDeck() {
+  initializeDeck(forceBlackjack = false) {
     const suits = ['hearts', 'diamonds', 'clubs', 'spades'];
     const ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
     
     this.cards = [];
-    for (const suit of suits) {
-      for (const rank of ranks) {
-        this.cards.push(new Card(suit, rank));
+    
+    // DEBUG MODE: Create deck with many Aces and 10-value cards for easy blackjack
+    if (forceBlackjack) {
+      // Add 20 Aces
+      for (let i = 0; i < 20; i++) {
+        this.cards.push(new Card('hearts', 'A'));
+      }
+      // Add 20 Kings (10 value)
+      for (let i = 0; i < 20; i++) {
+        this.cards.push(new Card('spades', 'K'));
+      }
+      // Add some other cards
+      for (let i = 0; i < 12; i++) {
+        this.cards.push(new Card('clubs', '5'));
+      }
+    } else {
+      // Normal deck
+      for (const suit of suits) {
+        for (const rank of ranks) {
+          this.cards.push(new Card(suit, rank));
+        }
       }
     }
   }

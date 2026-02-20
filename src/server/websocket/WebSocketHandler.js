@@ -664,6 +664,15 @@ class WebSocketHandler {
             // Broadcast initial game state
             this.broadcastGameState(roomId, gameState);
 
+            // Check if all players have blackjack or are done
+            // If so, start dealer's turn immediately
+            if (gameState.currentPlayerIndex === -1) {
+              console.log(`ルーム ${roomId} で全プレイヤーがブラックジャック、ディーラーのターンを開始`);
+              setTimeout(() => {
+                this.playDealerTurnAsync(roomId, gameState);
+              }, 1000);
+            }
+
             console.log(`ルーム ${roomId} で全員がベットし、ゲームが開始されました`);
           }
         }

@@ -14,7 +14,14 @@ class GameState {
       status: 'waiting', // 'waiting' | 'playing' | 'finished'
       handValue: 0
     };
+    // DEBUG: ブラックジャックテスト用モード
+    const forceBlackjack = process.env.DEBUG_BLACKJACK === 'true';
     this.deck = new Deck();
+    if (forceBlackjack) {
+      this.deck.initializeDeck(true);
+      this.deck.shuffle();
+      console.log('DEBUG: ブラックジャックテストモード有効');
+    }
     this.currentPlayerIndex = 0;
     this.winners = [];
     this.payouts = []; // Array of payout results
@@ -137,6 +144,12 @@ class GameState {
         break;
       }
       this.currentPlayerIndex++;
+    }
+    
+    // If all players have blackjack or are done, set currentPlayerIndex to -1
+    // This will trigger dealer's turn
+    if (this.currentPlayerIndex >= this.players.length) {
+      this.currentPlayerIndex = -1;
     }
     
     this.lastActionTime = new Date();
