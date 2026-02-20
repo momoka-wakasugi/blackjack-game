@@ -14,8 +14,51 @@
             <div class="room-info">
                 <span id="room-name">ルーム</span>
                 <span id="player-count">0 プレイヤー</span>
+                <button id="exit-room-btn" class="exit-btn" title="ルームから退出">退出</button>
             </div>
         </header>
+        
+        <!-- How to Play Popup -->
+        <div class="popup-overlay" id="how-to-play-popup">
+            <div class="popup-content">
+                <button class="popup-close" id="close-popup-btn">&times;</button>
+                <h2>🎰 ブラックジャックの遊び方</h2>
+                <div class="popup-body">
+                    <h3>ゲームの目的</h3>
+                    <p>カードの合計を21に近づけて、ディーラーより高い点数を目指します。ただし、21を超えると負けです。</p>
+                    
+                    <h3>カードの数え方</h3>
+                    <ul>
+                        <li>2〜10: そのままの数字</li>
+                        <li>J・Q・K: 10点</li>
+                        <li>A（エース）: 1点または11点（有利な方）</li>
+                    </ul>
+                    
+                    <h3>ゲームの流れ</h3>
+                    <ol>
+                        <li><strong>ベット:</strong> チップを選んでベット額を決定</li>
+                        <li><strong>カード配布:</strong> プレイヤーとディーラーに2枚ずつ配られます</li>
+                        <li><strong>プレイヤーのターン:</strong> ヒットまたはスタンドを選択</li>
+                        <li><strong>ディーラーのターン:</strong> ディーラーが自動でプレイ</li>
+                        <li><strong>結果判定:</strong> 勝敗が決まり、配当を受け取ります</li>
+                    </ol>
+                    
+                    <h3>アクション</h3>
+                    <ul>
+                        <li><strong>ヒット:</strong> カードを1枚追加で引く</li>
+                        <li><strong>スタンド:</strong> これ以上カードを引かずに終了</li>
+                    </ul>
+                    
+                    <h3>配当</h3>
+                    <ul>
+                        <li>勝利: ベット額の2倍</li>
+                        <li>ブラックジャック（最初の2枚で21）: ベット額の2.5倍</li>
+                        <li>引き分け: ベット額が返却</li>
+                    </ul>
+                </div>
+                <button class="popup-ok-btn" id="popup-ok-btn">わかりました</button>
+            </div>
+        </div>
         
         <main class="game-area">
             <!-- Dealer Section -->
@@ -87,8 +130,8 @@
                 </div>
                 
                 <div class="action-buttons" id="action-buttons" style="display: none;">
-                    <button id="hit-btn" disabled>ヒット</button>
-                    <button id="stand-btn" disabled>スタンド</button>
+                    <button id="hit-btn" disabled title="カードをもう1枚引きます">ヒット</button>
+                    <button id="stand-btn" disabled title="カードを引かずに終了します">スタンド</button>
                 </div>
                 
                 <div class="game-status" id="game-status">

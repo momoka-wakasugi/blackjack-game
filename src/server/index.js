@@ -29,7 +29,7 @@ app.get('/room/:roomId', (req, res) => {
 // Initialize WebSocket handler
 const wsHandler = new WebSocketHandler(io);
 
-const PORT = process.env.PORT || 443;
+const PORT = process.env.PORT || 3000;
 
 server.listen(PORT, () => {
   console.log(`Blackjack Multiplayer Server running on port ${PORT}`);
