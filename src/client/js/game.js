@@ -113,6 +113,15 @@ function setupExitButton() {
     if (!exitBtn) return;
     
     exitBtn.addEventListener('click', () => {
+        // Check if game is in progress
+        if (gameUI && gameUI.gameState) {
+            const status = gameUI.gameState.status;
+            if (status === 'playing' || status === 'betting') {
+                alert('ゲーム中は退出できません。\nゲームが終了するまでお待ちください。');
+                return;
+            }
+        }
+        
         const confirmed = confirm('ルームから退出しますか？\n（残高などの情報は保持されません）');
         
         if (confirmed) {
@@ -128,7 +137,17 @@ function setupExitButton() {
 }
 
 // Handle page unload
-window.addEventListener('beforeunload', () => {
+window.addEventListener('beforeunload', (e) => {
+    // Warn if game is in progress
+    if (gameUI && gameUI.gameState) {
+        const status = gameUI.gameState.status;
+        if (status === 'playing' || status === 'betting') {
+            e.preventDefault();
+            e.returnValue = 'ゲーム中です。本当に退出しますか？';
+            return e.returnValue;
+        }
+    }
+    
     if (socketClient) {
         socketClient.disconnect();
     }
